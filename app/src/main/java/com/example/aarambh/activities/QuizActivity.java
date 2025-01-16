@@ -41,55 +41,55 @@ public class QuizActivity extends AppCompatActivity {
 //        setUpOptionsRecyclerView();
 
         // Set button listeners for navigation
-        setButtonListeners();
+       // setButtonListeners();
     }
 
     /**
      * Set up the RecyclerView to display questions.
      */
-    private void setupQuestionRecyclerView() {
-        QuestionAdapter questionAdapter = new QuestionAdapter(questions);
-        binding.questionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.questionRecyclerView.setAdapter(questionAdapter);
-    }
+//    private void setupQuestionRecyclerView() {
+//        QuestionAdapter questionAdapter = new QuestionAdapter(questions);
+//        binding.questionRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        binding.questionRecyclerView.setAdapter(questionAdapter);
+//    }
 
     /**
      * Set up the RecyclerView to display options for the current question.
      */
-    private void setUpOptionsRecyclerView() {
-        // Convert the options array to a List for easier handling
-        List<String> options = Arrays.asList(questions.get(currentQuestion).getOptions());
-
-        // Initialize the OptionsAdapter with options and click listener
-        OptionsAdapter optionsAdapter = new OptionsAdapter(options, this::checkAnswer);
-        binding.optionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        binding.optionsRecyclerView.setAdapter(optionsAdapter);
-    }
+//    private void setUpOptionsRecyclerView() {
+//        // Convert the options array to a List for easier handling
+//        List<String> options = Arrays.asList(questions.get(currentQuestion).getOptions());
+//
+//        // Initialize the OptionsAdapter with options and click listener
+//        OptionsAdapter optionsAdapter = new OptionsAdapter(options, this::checkAnswer);
+//        binding.optionsRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+//        binding.optionsRecyclerView.setAdapter(optionsAdapter);
+//    }
 
     /**
      * Set up listeners for skip and next buttons.
      */
-    private void setButtonListeners() {
-        binding.btnSkip.setOnClickListener(v -> skipQuestion());
-        binding.btnNext.setOnClickListener(v -> nextQuestion());
-    }
+//    private void setButtonListeners() {
+//        binding.btnSkip.setOnClickListener(v -> skipQuestion());
+//        binding.btnNext.setOnClickListener(v -> nextQuestion());
+//    }
 
     /**
      * Check the selected answer and provide feedback (if needed).
      * @param selectedAnswer The selected option.
      */
-    private void checkAnswer(String selectedAnswer) {
-        disableOptions(); // Optionally disable the options after selection
-
-        if (selectedAnswer.equals(questions.get(currentQuestion).getCorrectAnswer())) {
-            // Correct answer - UI feedback can be added here
-        } else {
-            // Incorrect answer - UI feedback can be added here
-        }
-
-        // Move to next question after a short delay for feedback
-        new Handler().postDelayed(this::nextQuestion, 1000);
-    }
+//    private void checkAnswer(String selectedAnswer) {
+//        disableOptions(); // Optionally disable the options after selection
+//
+//        if (selectedAnswer.equals(questions.get(currentQuestion).getCorrectAnswer())) {
+//            // Correct answer - UI feedback can be added here
+//        } else {
+//            // Incorrect answer - UI feedback can be added here
+//        }
+//
+//        // Move to next question after a short delay for feedback
+//        new Handler().postDelayed(this::nextQuestion, 1000);
+//    }
 
     /**
      * Disable options after answer selection.
@@ -101,26 +101,26 @@ public class QuizActivity extends AppCompatActivity {
     /**
      * Skip the current question and move to the next one.
      */
-    private void skipQuestion() {
-        nextQuestion();
-    }
+//    private void skipQuestion() {
+//        nextQuestion();
+//    }
 
     /**
      * Move to the next question or end the quiz if it's the last question.
      */
-    private void nextQuestion() {
-        if (currentQuestion < questions.size() - 1) {
-            currentQuestion++;  // Increment to the next question
-            setUpOptionsRecyclerView();  // Update options for the new question
-        } else {
-            endQuiz();  // End the quiz if all questions are answered
-        }
-    }
+//    private void nextQuestion() {
+//        if (currentQuestion < questions.size() - 1) {
+//            currentQuestion++;  // Increment to the next question
+//            setUpOptionsRecyclerView();  // Update options for the new question
+//        } else {
+//            endQuiz();  // End the quiz if all questions are answered
+//        }
+//    }
 
     /**
      * End the quiz and show results.
      */
-    private void endQuiz() {
-        // Logic to show quiz results or an end screen can be implemented here
-    }
+//    private void endQuiz() {
+//        // Logic to show quiz results or an end screen can be implemented here
+//    }
 }

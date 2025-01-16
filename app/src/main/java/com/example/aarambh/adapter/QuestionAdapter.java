@@ -85,10 +85,10 @@ public class QuestionAdapter extends RecyclerView.Adapter<QuestionAdapter.Questi
             super(itemView);
 
             // Initialize views
-            questionNumberTextView = itemView.findViewById(R.id.questionNumberTextView);
-            questionTextView = itemView.findViewById(R.id.questionTextView);
+//            questionNumberTextView = itemView.findViewById(R.id.questionNumberTextView);
+//            questionTextView = itemView.findViewById(R.id.questionTextView);
             questionImageView = itemView.findViewById(R.id.questionImageView);
-            optionsRecyclerView = itemView.findViewById(R.id.optionsRecyclerView);
+           // optionsRecyclerView = itemView.findViewById(R.id.optionsRecyclerView);
         }
     }
 }
