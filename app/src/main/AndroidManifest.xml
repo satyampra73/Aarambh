@@ -16,6 +16,15 @@
             android:name=".activities.ContactUsActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.AllSubscriptionsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.NewsDetailsActivity"
+            android:exported="false" />
+
+
+        <activity
             android:name=".activities.WalletActivity"
             android:exported="false" />
         <activity
