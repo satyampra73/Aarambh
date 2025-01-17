@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,20 +19,43 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.example.aarambh.R;
+import com.example.aarambh.adapter.NewsAdapter;
+import com.example.aarambh.databinding.FragmentNewsBinding;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class NewsFragment extends Fragment {
+    FragmentNewsBinding binding;
 
     private Map<String, String> dataMap; // Stores data corresponding to items
     private TextView resultTextView; // Displays data of the selected/typed item
 
 
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_news, container, false);
+        binding = FragmentNewsBinding.inflate(inflater, container, false);
+        View view=binding.getRoot();
+
+        // Sample data for the adapter
+        List<NewsAdapter.News> newsList = new ArrayList<>();
+        newsList.add(new NewsAdapter.News("TET exam will be conducted on 12 Dec.", "12 December, 2023", R.drawable.place_holder_icon));
+        newsList.add(new NewsAdapter.News("New curriculum announced for 2024", "5 January, 2024", R.drawable.place_holder_icon));
+        newsList.add(new NewsAdapter.News("Annual school fest dates released", "10 February, 2024", R.drawable.place_holder_icon));
+
+        // Set adapter with data
+
+        NewsAdapter newsAdapter=new NewsAdapter(newsList);
+        binding.recyclerviewOne.setLayoutManager(new LinearLayoutManager(requireContext()));
+        binding.recyclerviewOne.setAdapter(newsAdapter);
+
+
+
 
         // Initialize views
         SearchView searchView = view.findViewById(R.id.searchView);
