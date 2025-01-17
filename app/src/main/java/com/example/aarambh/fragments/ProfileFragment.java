@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.aarambh.R;
+import com.example.aarambh.activities.AllSubscriptionsActivity;
 import com.example.aarambh.activities.UpdateDetailsActivity;
 import com.example.aarambh.activities.WalletActivity;
 import com.example.aarambh.databinding.FragmentProfileBinding;
@@ -36,12 +37,22 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
         // Set click listener for layoutwallet
         binding.layoutwallet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Navigate to WalletActivity
                 Intent intent = new Intent(getActivity(), WalletActivity.class);
+                startActivity(intent);
+            }
+        });
+        // Set click listener for layoutSubscription
+        binding.layoutSubscription.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to WalletActivity
+                Intent intent = new Intent(getActivity(), AllSubscriptionsActivity.class);
                 startActivity(intent);
             }
         });

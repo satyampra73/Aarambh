@@ -222,7 +222,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/layoutlist12"
+                        android:id="@+id/layoutSubscription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
