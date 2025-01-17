@@ -440,7 +440,7 @@
 
 
                     <LinearLayout
-                        android:id="@+id/layoutlist14"
+                        android:id="@+id/layoutContactus"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">

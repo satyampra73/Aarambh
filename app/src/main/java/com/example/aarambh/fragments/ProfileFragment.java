@@ -12,12 +12,14 @@ import androidx.fragment.app.Fragment;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.aarambh.R;
+import com.example.aarambh.activities.ContactUsActivity;
 import com.example.aarambh.activities.UpdateDetailsActivity;
 import com.example.aarambh.activities.WalletActivity;
 import com.example.aarambh.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
 
+    // Binding object to handle view elements
     private FragmentProfileBinding binding;
 
     @Nullable
@@ -26,28 +28,40 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout using DataBindingUtil
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false);
 
-        // Set click listener for editProfile button
-        binding.editProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to UpdateDetailsActivity
+        // Set up click listeners
+        setupClickListeners();
+
+        // Return the root view of the binding
+        return binding.getRoot();
+    }
+
+
+    // Sets up click listeners for buttons and layouts in the fragment.
+
+    private void setupClickListeners() {
+        // Edit Profile button
+        binding.editProfile.setOnClickListener(v -> {
+            if (getActivity() != null) {
                 Intent intent = new Intent(getActivity(), UpdateDetailsActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Set click listener for layoutwallet
-        binding.layoutwallet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to WalletActivity
+        // Wallet layout
+        binding.layoutwallet.setOnClickListener(v -> {
+            if (getActivity() != null) {
                 Intent intent = new Intent(getActivity(), WalletActivity.class);
                 startActivity(intent);
             }
         });
 
-        // Return the root view of the binding
-        return binding.getRoot();
+        // Contact Us layout
+        binding.layoutContactus.setOnClickListener(v -> {
+            if (getActivity() != null) {
+                Intent intent = new Intent(getActivity(), ContactUsActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
