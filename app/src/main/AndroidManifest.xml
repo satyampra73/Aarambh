@@ -15,9 +15,12 @@
         <activity
             android:name=".activities.AllSubscriptionsActivity"
             android:exported="false" />
+
         <activity
             android:name=".activities.NewsDetailsActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.WalletActivity"/>
         <activity
             android:name=".activities.QuizActivity"
             android:exported="false" />
