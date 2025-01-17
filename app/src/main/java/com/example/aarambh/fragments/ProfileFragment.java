@@ -16,6 +16,7 @@ import com.example.aarambh.activities.ContactUsActivity;
 import com.example.aarambh.activities.UpdateDetailsActivity;
 import com.example.aarambh.activities.WalletActivity;
 import com.example.aarambh.databinding.FragmentProfileBinding;
+import com.example.aarambh.activities.AllSubscriptionsActivity;
 
 public class ProfileFragment extends Fragment {
 
