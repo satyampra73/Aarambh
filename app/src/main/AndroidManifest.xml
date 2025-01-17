@@ -20,7 +20,8 @@
             android:name=".activities.NewsDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.WalletActivity"/>
+            android:name=".activities.WalletActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.QuizActivity"
             android:exported="false" />
