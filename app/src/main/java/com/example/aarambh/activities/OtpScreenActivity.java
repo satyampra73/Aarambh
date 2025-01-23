@@ -53,7 +53,7 @@ public class OtpScreenActivity extends AppCompatActivity {
 
         // Initialize views and listeners
         initializeViews();
-        setupOtpInputListeners();
+        numberOtpMove();
 
         // Start timer and auto-resend functionality
         startResendOtpTimer();
@@ -65,37 +65,6 @@ public class OtpScreenActivity extends AppCompatActivity {
         binding.btnResendOtp.setOnClickListener(v -> handleResendOtpClick());
         binding.btnResendOtp.setVisibility(View.GONE); // Initially hide the button
     }
-    private void setupOtpInputListeners() {
-        binding.otp1.addTextChangedListener(createOtpTextWatcher(binding.otp1, binding.otp2));
-        binding.otp2.addTextChangedListener(createOtpTextWatcher(binding.otp2, binding.otp3));
-        binding.otp3.addTextChangedListener(createOtpTextWatcher(binding.otp3, binding.otp4));
-        binding.otp4.addTextChangedListener(createOtpTextWatcher(binding.otp4, null));
-    }
-
-    private TextWatcher createOtpTextWatcher(View currentEditText, View nextEditText) {
-        return new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // No-op
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s.length() == 1 && nextEditText != null) {
-                    nextEditText.requestFocus();
-                } else if (s.length() == 0 && currentEditText != null) {
-                    currentEditText.requestFocus();
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                // No-op
-            }
-        };
-    }
-
-
 
 
     private void startResendOtpTimer() {
@@ -214,5 +183,86 @@ public class OtpScreenActivity extends AppCompatActivity {
             e.printStackTrace();
         }
         Toast.makeText(this, "Failed to process request. Try again.", Toast.LENGTH_SHORT).show();
+    }
+
+    // Method for moving OTP number
+    private void numberOtpMove() {
+        binding.otp1.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()){
+                    binding.otp2.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        binding.otp2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (!s.toString().trim().isEmpty()){
+                    binding.otp1.requestFocus();
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()){
+                    binding.otp3.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        binding.otp3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (!s.toString().trim().isEmpty()){
+                    binding.otp2.requestFocus();
+                }
+            }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()){
+                    binding.otp4.requestFocus();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+        binding.otp4.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                if (!s.toString().trim().isEmpty()){
+                    binding.otp3.requestFocus();
+                }
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
     }
 }
