@@ -20,12 +20,19 @@ public class SignUpActivity extends AppCompatActivity {
 
         // Set up click listener for the sign-up button
         binding.continueButton.setOnClickListener(v -> {
-            Toast.makeText(SignUpActivity.this, "OTP sent", Toast.LENGTH_SHORT).show();
+            if (binding.nameInput.getText().toString().trim().isEmpty()) {
+                Toast.makeText(SignUpActivity.this, "Please enter your name", Toast.LENGTH_SHORT).show();
 
-            // Navigate to Otp_Screen activity
-            Intent intent = new Intent(SignUpActivity.this, OtpScreenActivity.class);
-            intent.putExtra("flag","2");
-            startActivity(intent);
+            } else if (binding.mobileInput.getText().toString().trim().isEmpty()) {
+                Toast.makeText(SignUpActivity.this, "Please enter your mobile number", Toast.LENGTH_SHORT).show();
+            } else {
+                Intent intent = new Intent(SignUpActivity.this, OtpScreenActivity.class);
+                intent.putExtra("flag","2");
+                intent.putExtra("mobile",binding.mobileInput.getText().toString().trim());
+                startActivity(intent);
+            }
+
+
         });
         binding.loginText2.setOnClickListener(v -> {
             Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
