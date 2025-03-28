@@ -14,9 +14,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.example.aarambh.R;
 import com.example.aarambh.databinding.ActivityOtpScreenBinding;
-import com.example.aarambh.modelclass.OtpResponseModel;
-import com.example.aarambh.retrofit.GetData;
-import com.example.aarambh.retrofit.RetrofitInstance;
+
 
 import org.json.JSONObject;
 
@@ -29,7 +27,6 @@ import retrofit2.Response;
 public class OtpScreenActivity extends AppCompatActivity {
 
     private ActivityOtpScreenBinding binding;
-    private GetData apiService;
     private static final String TAG = "OtpScreenActivity";
 
     private String flag; // Passed from the Intent
@@ -45,7 +42,6 @@ public class OtpScreenActivity extends AppCompatActivity {
 
         mobileNumber = getIntent().getStringExtra("mobile");
         // Initialize Retrofit API service
-        apiService = RetrofitInstance.getClient().create(GetData.class);
 
         // Get Intent extras
         flag = getIntent().getStringExtra("flag");
@@ -57,7 +53,6 @@ public class OtpScreenActivity extends AppCompatActivity {
 
         // Start timer and auto-resend functionality
         startResendOtpTimer();
-        resendOtp(); // Trigger OTP sending on screen load
     }
 
     private void initializeViews() {
@@ -93,78 +88,15 @@ public class OtpScreenActivity extends AppCompatActivity {
         if (otp.length() != 4) {
             Toast.makeText(OtpScreenActivity.this, "Please enter a valid 4-digit OTP", Toast.LENGTH_SHORT).show();
         } else {
-            verifyOtp(otp);
+
         }
     }
 
     private void handleResendOtpClick() {
-        resendOtp();
         startResendOtpTimer();
     }
 
-    private void resendOtp() {
-        String authToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJDLUNCNDhCQTZFQjUzMTQ0MSIsImlhdCI6MTcyMDY5NDY2MCwiZXhwIjoxODc4Mzc0NjYwfQ.xB0K1ZHQeXBVs_qzvaDOTqznBf65cQh2FLD63dF_h7PY3I6URC_oy2LovTYLXMX1R7grqUC0XijQT9_h9NVH9w";
-        String countryCode = "91";
-        String customerId = "C-8EFA902D5D5A495";
 
-        int otpLength = 4;
-
-        apiService.sendOTP(authToken, countryCode, customerId, "SMS", otpLength, mobileNumber)
-                .enqueue(new Callback<OtpResponseModel>() {
-                    @Override
-                    public void onResponse(Call<OtpResponseModel> call, Response<OtpResponseModel> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            OtpResponseModel responseBody = response.body();
-                            if (responseBody.getData() != null) {
-                                verificationId = responseBody.getData().getVerificationId();
-                                Toast.makeText(OtpScreenActivity.this, "OTP Sent Successfully", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Log.e(TAG, "Verification ID is missing in response");
-                                Toast.makeText(OtpScreenActivity.this, "Error: Verification ID missing", Toast.LENGTH_SHORT).show();
-                            }
-                        } else {
-                            handleErrorResponse(response);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<OtpResponseModel> call, Throwable t) {
-                        Log.e(TAG, "Error: " + t.getMessage());
-                        Toast.makeText(OtpScreenActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
-
-    private void verifyOtp(String otp) {
-        if (verificationId == null || verificationId.isEmpty()) {
-            Toast.makeText(this, "Verification ID is missing. Please resend OTP.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String authToken = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJDLUNCNDhCQTZFQjUzMTQ0MSIsImlhdCI6MTcyMDY5NDY2MCwiZXhwIjoxODc4Mzc0NjYwfQ.xB0K1ZHQeXBVs_qzvaDOTqznBf65cQh2FLD63dF_h7PY3I6URC_oy2LovTYLXMX1R7grqUC0XijQT9_h9NVH9w";
-        String countryCode = "91";
-        String mobileNumber = "7355702482";
-        String customerId = "C-8EFA902D5D5A495";
-
-        apiService.verifyOTP(authToken, countryCode, mobileNumber, verificationId, customerId, otp)
-                .enqueue(new Callback<OtpResponseModel>() {
-                    @Override
-                    public void onResponse(Call<OtpResponseModel> call, Response<OtpResponseModel> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-                            Toast.makeText(OtpScreenActivity.this, "OTP Verified Successfully", Toast.LENGTH_SHORT).show();
-                            navigateToNextScreen();
-                        } else {
-                            Toast.makeText(OtpScreenActivity.this, "Invalid OTP", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<OtpResponseModel> call, Throwable t) {
-                        Log.e(TAG, "Error: " + t.getMessage());
-                        Toast.makeText(OtpScreenActivity.this, "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-    }
 
     private void navigateToNextScreen() {
         if ("1".equals(flag)) {
