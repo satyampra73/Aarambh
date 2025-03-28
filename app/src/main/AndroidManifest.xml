@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,52 +14,52 @@
         android:theme="@style/Theme.Aarambh"
         tools:targetApi="31">
         <activity
-            android:name=".activities.ContactUsActivity"
+            android:name=".ui.activities.ContactUsActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AllSubscriptionsActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.NewsDetailsActivity"
+            android:name=".ui.activities.AllSubscriptionsActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".ui.activities.NewsDetailsActivity"
+            android:exported="false" />
+
 
         <activity
-            android:name=".activities.WalletActivity"
+            android:name=".ui.activities.WalletActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.QuizActivity"
+            android:name=".ui.activities.QuizActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ChangePassword"
+            android:name=".ui.activities.ChangePassword"
             android:exported="false" />
         <activity
-            android:name=".activities.MobileVerifyActivity"
+            android:name=".ui.activities.MobileVerifyActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.SubCategoryActivity"
+            android:name=".ui.activities.SubCategoryActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.ExamActivity"
+            android:name=".ui.activities.ExamActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.UpdateDetailsActivity"
+            android:name=".ui.activities.UpdateDetailsActivity"
             android:exported="false" /> <!-- Bottom Navigation Activity -->
         <activity
-            android:name=".activities.BottomNavigationActivity"
+            android:name=".ui.activities.BottomNavigationActivity"
             android:exported="false" /> <!-- Login Activity -->
         <activity
-            android:name=".activities.LoginActivity"
+            android:name=".ui.activities.LoginActivity"
             android:exported="false" /> <!-- OTP Screen Activity -->
         <activity
-            android:name=".activities.OtpScreenActivity"
+            android:name=".ui.activities.OtpScreenActivity"
             android:exported="false" /> <!-- Sign-Up Activity -->
         <activity
-            android:name=".activities.SignUpActivity"
+            android:name=".ui.activities.SignUpActivity"
             android:exported="false" /> <!-- Main Activity -->
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
