@@ -1,6 +1,7 @@
 package com.example.aarambh.viewmodel;
 
 import android.content.Context;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,6 +10,7 @@ import androidx.lifecycle.ViewModel;
 import com.example.aarambh.data.modelclass.usercheck.UserCheckResponse;
 import com.example.aarambh.data.repository.AuthRepository;
 import com.example.aarambh.ui.utils.CustomProgressBar;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -49,6 +51,9 @@ public class AuthViewModel extends ViewModel {
                     progressBar.hideProgress(); // Hide progress after response
                 }
                 if (response.isSuccessful() && response.body() != null) {
+                    Gson gson = new Gson();
+                    String jsonResponse = gson.toJson(response.body());
+                    Log.d("strResponse", jsonResponse);
                     userResponse.postValue(response.body());
                 } else {
                     errorMessage.postValue("Failed to check user");
