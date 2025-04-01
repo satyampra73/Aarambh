@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Navigate to BottomNavigation screen
-                Intent intent = new Intent(LoginActivity.this, ExamActivity.class);
+                Intent intent = new Intent(LoginActivity.this, CategoryActivity.class);
                 startActivity(intent);
                 finish(); // Close the Login activity (optional)
             }

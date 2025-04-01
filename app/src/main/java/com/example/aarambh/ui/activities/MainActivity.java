@@ -50,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
             if (!mobile.isEmpty()) {
                 authViewModel.checkUser(MainActivity.this,mobile);
             } else {
-                Toast.makeText(MainActivity.this,"Please Enter Mobile Number",Toast.LENGTH_SHORT).show();
+//                Toast.makeText(MainActivity.this,"Please Enter Mobile Number",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
